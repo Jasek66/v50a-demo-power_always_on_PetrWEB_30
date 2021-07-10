@@ -27,8 +27,8 @@ void Cerpadlo_loop() {
     // zapneme napájecí napětí pro modul s krátkou pauzou
     // pro ustálení
     digitalWrite(vccPin, HIGH);
-    delay(2000);
-    // načtení digitální hodnoty do proměnných
+    delay(2000);   // proč čekáš  
+    // načtení digitální hodnoty 2s , na co?   dealay je hloupej časovač který  zastavuje celý proces, takže procesor po dobu delay vubec nic nedělá, tudíš nenůže vykonávat další procesi které jsou potřeba
     hladinoMerStav = digitalRead(hladinoMer);
     // ukončení řádku na sériové lince
     Serial.println();
@@ -44,7 +44,7 @@ void Cerpadlo_loop() {
     Serial.println("nízká hladina, čerpadlo vypínám");
     Serial.println();
   } else {
-    delay(60000);
+    delay(60000);  //  to samé delay používat jen krátké když je to nutné cca 200ms, tady opět procesor bude čekat 60s a nic se nebude dít, proč to tam máš?
     digitalWrite(cerpadlo_motor, HIGH);
     Serial.println();
     Serial.println("čerpadlo zapínám");
@@ -56,7 +56,7 @@ void Cerpadlo_loop() {
   if (cerpadloStav == HIGH) {
     //napiš na display a na web čerpadlo běží
     Serial.println("čerpadlo běží-on");
-    delay (20000);
+    delay (20000);  // a zase čekáme a hovno děláme :D
     
     }
 
